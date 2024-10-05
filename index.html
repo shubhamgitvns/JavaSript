@@ -6,13 +6,17 @@
     <title>Simple Script</title>
 </head>
 <body>
-<h1>My first java sccript program</h1>
-
-<h2>The alert message</h2>
-
-
+    <p id="message"></p>
+    <p id="tipic"></p>
     <script>
         alert("Hello, world!");
+        var name = "Alice";
+        var age = 30;
+
+        document.getElementById("message").innerHTML = "Hello, " + name + "! You are " + age + " years old.";
+        alert("Second")
+        document.getElementById("tipic").innerHTML = "Aducation " + "B.C.A";
+
     // Your JavaScript code goes here
 </script>
 
