@@ -6,13 +6,13 @@
     <title>Simple Script</title>
 </head>
 <body>
-    <h1>Simple sum of two numbers</h1>
-    <label for="num1">Enter your first number:</label>
+    <h1>Caluculate the area of rectangle</h1>
+    <label for="num1">Enter the length:</label>
     <input type="text" id="num1">
 
-    <label for="num2">Enter your second number:</label>
+    <label for="num2">Enter the weidth:</label>
     <input type="text" id="num2">
-    <button onclick="sum()">Click Me</button>
+    <button onclick="area()">Click Me</button>
     <br>
     <p id="result"></p>
 
@@ -21,11 +21,11 @@
 
     <script>
         
-       function sum() {
+       function area() {
         let num1 = parseInt(document.getElementById("num1").value);
         let num2 = parseInt(document.getElementById("num2").value);
-        let sum = num1 * num2;
-    document.getElementById("result").textContent = "Multyplication = " + sum ;
+        let area = num1 * num2;
+    document.getElementById("result").textContent = "Area of rectangle = " + area ;
 }
 
     // Your JavaScript code goes here
