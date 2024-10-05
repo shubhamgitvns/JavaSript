@@ -6,16 +6,21 @@
     <title>Simple Script</title>
 </head>
 <body>
-    <p id="message"></p>
-    <p id="tipic"></p>
-    <script>
-        alert("Hello, world!");
-        var name = "Alice";
-        var age = 30;
+    <label>Enter your name:</label>
+    <input type="text" id="name">
+    <button onclick="greet()">Greet Me</button>
+    <p id="greeting"></p>
 
-        document.getElementById("message").innerHTML = "Hello, " + name + "! You are " + age + " years old.";
-        alert("Second")
-        document.getElementById("tipic").innerHTML = "Aducation " + "B.C.A";
+    <script src="script.js"></script>
+
+
+    <script>
+
+       function greet() {
+    let name = document.getElementById("name").value;
+    let greetingMessage = "Hello, " + name + "!";
+    document.getElementById("greeting").textContent = greetingMessage;
+}
 
     // Your JavaScript code goes here
 </script>
