@@ -8,69 +8,146 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Simple Script</title>
 
-    <style>
-        .hidden {
-            display: none;
+   <style>
+    body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f5f5f5;
+}
 
-        }
-    </style>
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 15px;
+}
+
+button.edit-button, button.delete-button {
+    background-color: #f2f2f2;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+   </style>
+
+
+
+<script>
+     
+    let taskList = [];
+
+function addTask() {
+   let taskInput = document.getElementById("taskInput");
+   let task = taskInput.value;
+
+   if (task !== "") {
+       taskList.push({ task: task, completed: false });
+       renderTaskList();
+       taskInput.value = "";
+   }
+}
+
+function renderTaskList() {
+   let taskListElement = document.getElementById("taskList");
+   taskListElement.innerHTML = "";
+
+   for (let i = 0; i < taskList.length; i++) {
+       let task = taskList[i];
+       let listItem = document.createElement("li");
+       let checkbox = document.createElement("input");
+       checkbox.type = "checkbox";
+       checkbox.checked = task.completed;
+       checkbox.addEventListener("change", () => {
+           task.completed = checkbox.checked;
+           renderTaskList();
+       });
+
+       let taskText = document.createTextNode(task.task); // Access the task property
+       let editButton = document.createElement("button");
+       editButton.textContent = "Edit";
+       editButton.addEventListener("click", () => {
+           let newTask = prompt("Enter the new task:", task.task);
+           if (newTask !== null) {
+               task.task = newTask;
+               renderTaskList();
+           }
+       });
+
+       let deleteButton = document.createElement("button");
+       deleteButton.textContent = "Delete";
+       deleteButton.addEventListener("click", () => {
+           taskList.splice(i, 1);
+           renderTaskList();
+       });
+
+       listItem.appendChild(checkbox);
+       listItem.appendChild(taskText);
+       listItem.appendChild(editButton);
+       listItem.appendChild(deleteButton);
+       taskListElement.appendChild(listItem);
+   }
+}
+
+function clearCompletedTasks() {
+   taskList = taskList.filter(task => !task.completed);
+   renderTaskList();
+}
+
+
+
+   </script>
+
 </head>
 
 <body>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col">
-            <center>
-                <label for="">Label</label>
-                <input id="t" type="text" onchange="f()" onkeyup="f()" onblur="f()">
-                <script>
-                    function ff(event) {
-                        console.log(event);
-                        console.log(event.target);
-                        console.log(event.target.value);
-                    }
-                    function f() {
-                        console.log("click");
-                        const query=document.getElementById("t").value.trim().toLowerCase();
-                        const items = document.getElementsByClassName("tp");
-                        const n=items.length;
-                        // one
-                        for (let i=0;i<=n-1;i++) {
-                            let item=items[i];
-                            let title=item.title.trim().toLowerCase();
-                            console.log(query,title);
-                            if(title.includes(query))
-                            item.classList.remove("hidden");
-                        else
-                        item.classList.add("hidden");
-                            
-                        }
-                        
-                        
-                    }
-                </script>
+   
+   
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter a task">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+        <button onclick="clearCompletedTasks()">Clear Completed Tasks</button>
+    
+        <script src="script.js"></script>
 
-            </center>
-        </div>
-    </div>
-    <br>
-
-
-    <div class="container">
-        <div class="row align-items-start    ">
-            <div class="col-md-6  tp" title="one">
-                <img id="img1" width="200" src="images/varanasi.png" alt="">
-            </div>
-
-            <div class="col-md-6 tp" title="two">
-                <img id="img2" width="200" src="images/sarnat.png" alt="">
-            </div>
-
-
-        </div>
-
-
+   
 
 </body>
 
