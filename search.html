@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplest Search Demo</title>
+  <style>
+    .opening{
+    animation-name: openingup;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    
+}
+ @keyframes openingup {
+    0%{opacity: 0;}
+    100%{opacity:1;display: block;}
+}
+
+.closing{
+    animation-name: closingdown;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    
+}
+ @keyframes closingdown {
+    0%{opacity: 1;}
+    100%{opacity:0;display: none;}
+}
+
+  </style>
+
+</head>
+<body>
+    <input type="text" id="txtquery" onkeyup="doSearch()">
+
+<div class="item opening">Java</div>
+<div class="item opening">Jaundice</div>
+<div class="item opening">Japan</div>
+<div class="item opening">China</div>
+
+    <script>
+        const txtquery=document.getElementById("txtquery");
+        const items=document.getElementsByClassName("item");
+function doSearch()
+{
+    const searchtext=txtquery.value.toLowerCase().trim();
+    
+    console.log("key up",searchtext);
+    for(let i=0;i<=items.length-1;i++)
+{{
+        console.log(items[i]);
+        if(items[i].textContent.trim().toLowerCase().includes(searchtext))
+        {
+            
+            items[i].classList.remove("closing");
+            items[i].classList.add("opening");
+        }
+        else
+        {
+            // items[i].style.display="none";
+            // doHide()i;
+            // setTimeout("items[i].style.display='none';",5000);
+            items[i].classList.remove("opening");
+            items[i].classList.add("closing");
+        }
+    
+}
+}
+}
+    </script>
+</body>
+</html>
