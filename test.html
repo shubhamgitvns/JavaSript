@@ -31,10 +31,30 @@
 </head>
 <body>
 
-    <h1>Background Color: <span id="colorCode">#FFFFFF</span></h1>
-    <button onclick="changeColor()">Flip Color</button>
+    <h2>Simple code</h2>
+    <div id="counter">0</div>
+    <button onclick="increment()">Increment</button>
+    <button onclick="decrement()">Decrement</button>
+
+
+    <!-- <h1>Background Color: <span id="colorCode">#FFFFFF</span></h1>
+    <button onclick="changeColor()">Flip Color</button> -->
 
     <script>
+        let count = 0;
+        function update(){
+            const counterDisplay = document.getElementById('counter');
+            counterDisplay.textContent =count;
+        }
+        function increment(){
+            count++;
+            update();
+        }
+
+        function decrement(){
+            count--;
+            update();
+        }
         function changeColor() {
             const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
             document.body.style.backgroundColor = randomColor;
