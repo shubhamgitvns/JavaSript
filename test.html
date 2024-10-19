@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Flipper</title>
+    <script>
+
+
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,9 +20,11 @@
             margin: 0;
             transition: background-color 0.5s;
         }
+
         h1 {
             margin-bottom: 20px;
         }
+
         button {
             padding: 10px 20px;
             font-size: 16px;
@@ -29,38 +36,82 @@
         }
     </style>
 </head>
+
 <body>
 
-    <h2>Simple code</h2>
-    <div id="counter">0</div>
-    <button onclick="increment()">Increment</button>
-    <button onclick="decrement()">Decrement</button>
+    <div>
+        <span>Name: </span>
+        <input id="txtname" type="text">
+    </div>
+    <br>
 
+    <div>
+        <span>Age: </span>
+        <input id="txtage" type="text">
+    </div>
+    <br>
 
-    <!-- <h1>Background Color: <span id="colorCode">#FFFFFF</span></h1>
-    <button onclick="changeColor()">Flip Color</button> -->
+    <div>
+        <span>Address: </span>
+        <textarea name="" id="txtaddress"></textarea>
+    </div>
+    <br>
+    <button onclick="set()">Set</button>
+    <br>
+    <button onclick="get()">Get</button>
 
     <script>
+        const txtName=document.getElementById("txtname");
+        const txtAde=document.getElementById("txtage");
+        const txtAddress=document.getElementById("txtaddress");
         let count = 0;
-        function update(){
-            const counterDisplay = document.getElementById('counter');
-            counterDisplay.textContent =count;
-        }
-        function increment(){
-            count++;
-            update();
+
+        function set() {
+            console.log("I am set function");
+            const name=txtName.value;
+            const age=txtAde.value;
+            const  address=txtAddress.value;
+        let str=    getObject(name,age,address);
+        
+        console.log(str);
+        localStorage.setItem("entry",str);
+        const obj=JSON.parse(str) ;
+        console.log(obj);
+        console.log(obj.name);
+        str=JSON.stringify(obj);
+        console.log(str);
         }
 
-        function decrement(){
-            count--;
-            update();
+        function get() {
+            const data=localStorage.getItem("entry");
+            console.log(data);
+            if(data==null)
+        {
+            // alert("No data");
         }
-        function changeColor() {
-            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-            document.body.style.backgroundColor = randomColor;
-            document.getElementById('colorCode').textContent = randomColor;
+        else 
+        {
+            const obj=JSON.parse(data);
+            // alert("Mil gaya");
+            txtName.value=obj.name;
+            txtAddress.value=obj.address;
+            txtAde.value=obj.age;
         }
+        }
+
+        function getObject(name,age,address)
+{
+    
+    let obj=`{
+    "name":"${name}" ,
+     "age":${age}, 
+     "address":"${address}"
+     }`;
+     return obj;
+}
+get();
     </script>
 
 </body>
+
 </html>
