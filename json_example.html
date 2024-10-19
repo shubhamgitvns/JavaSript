@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Data</h1>
+    <div>
+        <span>Book Name:</span>
+        <input id="txtbook" type="text">
+    </div>
+    <br>
+    <div>
+        <span>Book Price:</span>
+        <input id="txtprice" type="text">
+    </div>
+    <br>
+    <div>
+        <span>Author Name:</span>
+        <input id="txtauthor" type="text">
+    </div>
+    <br>
+    <button onclick="set()">Set</button>
+    <br>
+    <button onclick="get()">Get</button>
+
+    <script>
+
+        const txtBook = document.getElementById("txtbook");
+        const txtPrice = document.getElementById("txtprice");
+        const txtAuthor = document.getElementById("txtauthor");
+        let a=[];
+        function set(){
+            console.log("I am set fun()");
+            const book = txtBook.value;
+            const price = txtPrice.value;
+            const author =txtAuthor.value;
+            let str = getObject(book,price,author);
+            console.log(str);
+            a.push(str);
+            localStorage.setItem("Book_Data",a);
+            
+        }
+
+        function get(){
+            console.log("I am get fun()");
+        }
+
+        function getObject(book,price,author)
+{
+    
+    let obj=`{
+    "book name":"${book}" ,
+     "book price":${price}, 
+     "author":"${author}"
+     }`;
+     return obj;
+}
+    </script>
+</body>
+</html>
