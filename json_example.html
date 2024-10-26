@@ -64,22 +64,25 @@
             const price = txtPrice.value;
             const author =txtAuthor.value;
             let str = getObject(book,price,author);
-            console.log(str);
             a.push(str);
             localStorage.setItem("Book_Data",a);
+            str = JSON.parse(str);
+            console.log(str);
             
         }
 
         function get(){
-            console.log("I am get fun()");
+            let data = localStorage.getItem("Book_Data");
+            //data=JSON.parse(data);
+            console.log(data);
         }
 
         function getObject(book,price,author)
 {
     
     let obj=`{
-    "book name":"${book}" ,
-     "book price":${price}, 
+    "bookname":"${book}" ,
+     "bookprice":${price}, 
      "author":"${author}"
      }`;
      return obj;
